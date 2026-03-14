@@ -1,1 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 864 864"
+   height="864"
+   width="864"
+   xml:space="preserve"
+   id="svg2"
+   version="1.1"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6"><clipPath
+       id="clipPath22"
+       clipPathUnits="userSpaceOnUse"><path
+         id="path20"
+         d="M 0,648 H 648 V 0 H 0 Z" /></clipPath></defs><g
+     transform="matrix(1.3333333,0,0,-1.3333333,0,864)"
+     id="g10"><path
+       id="path12"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 0,0 H 648 V 648 H 0 Z" /><path
+       id="path14"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 0,0 H 648 V 648 H 0 Z" /><g
+       id="g16"><g
+         clip-path="url(#clipPath22)"
+         id="g18"><g
+           transform="translate(463.3477,394.395)"
+           id="g24"><path
+             id="path26"
+             style="fill:#404041;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             d="m 0,0 c -4.08,3.71 -10.03,5.59 -17.66,5.59 h -83.861 l -30.029,-35.17 -4.79,-5.6 -16.88,-19.78 c 0.002,10e-4 -0.003,0 0,0 L -248.981,-167.191 -107.8,-35.42 h 9.44 V -158.6 c 0,-8.779 2.19,-15.62 6.52,-20.31 4.449,-4.83 10.23,-7.27 17.18,-7.27 6.87,0 12.59,2.421 17.01,7.21 4.29,4.66 6.46,11.511 6.46,20.37 v 123.18 h 33.53 c 7.519,0 13.43,1.84 17.55,5.47 4.259,3.77 6.52,8.94 6.52,14.97 C 6.41,-8.98 4.189,-3.8 0,0" /></g><g
+           transform="translate(216.6523,332.1572)"
+           id="g28"><path
+             id="path30"
+             style="fill:#9b1c26;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             d="m 0,0 c 3.97,4.44 5.98,10.85 5.98,19.03 v 76.61 l 17.25,-68.56 0.01,-0.05 c 0.99,-3.79 1.95,-7.41 2.86,-10.75 1.05,-3.88 2.51,-7.49 4.36,-10.72 2.08,-3.63 5,-6.64 8.7,-8.95 2.35,-1.47 5,-2.49 7.92,-3.06 l 12.5,14.64 25.62,30 v 0.01 l 0.83,3.32 v 0.01 l 10.11,40.15 v 0.01 l 3.51,13.95 V 55.12 l 29.6,34.66 14.79,17.33 81.05,94.93 -81.05,-75.65 v 33 c 0,9.71 -2.88,16.57 -8.57,20.39 -4.96,3.32 -11.52,5.01 -19.49,5.01 h -11.13 c -7.5,0 -12.96,-0.73 -16.69,-2.22 -4.41,-1.76 -7.69,-4.93 -9.76,-9.43 -1.61,-3.48 -3.35,-8.82 -5.3,-16.29 L 52.82,80.38 32.54,156.83 c -1.96,7.5 -3.7,12.84 -5.3,16.31 -2.08,4.49 -5.36,7.67 -9.76,9.43 -3.74,1.49 -9.2,2.22 -16.69,2.22 h -11.14 c -7.97,0 -14.53,-1.69 -19.49,-5.02 -5.69,-3.8 -8.57,-10.66 -8.57,-20.38 V 19.03 c 0,-8.3 2.05,-14.74 6.09,-19.14 4.17,-4.56 9.57,-6.87 16.05,-6.87 6.66,0 12.14,2.35 16.27,6.98" /></g></g></g><text
+       id="text36"
+       style="font-variant:normal;font-weight:800;font-stretch:normal;font-size:60px;font-family:'Montserrat ExtraBold';-inkscape-font-specification:Montserrat-ExtraBold;writing-mode:lr-tb;fill:#404041;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1,0,0,-1,154.9204,142.7627)"><tspan
+         id="tspan32"
+         y="0"
+         x="0 69.239998 128.39999">MAS</tspan><tspan
+         id="tspan34"
+         y="0"
+         x="178.62 228.72 281.04001">TEK</tspan></text>
+<text
+       id="text40"
+       style="font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27px;font-family:Ebrima;-inkscape-font-specification:Ebrima-Bold;writing-mode:lr-tb;fill:#404041;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1,0,0,-1,199.2988,104.4434)"><tspan
+         id="tspan38"
+         y="0"
+         x="0 13.959 40.688999 67.418999 93.285004 116.694 141.075 162.297 176.256 202.12199 228.85201">INNOVATIONS</tspan></text>
+</g></svg>
