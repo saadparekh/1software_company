@@ -9,7 +9,7 @@ import CustomerReviewsSection from "../components/CustomerReviewsSection";
 import LocationSection from "../components/LocationSection";
 import AppointmentSection from "../components/AppointmentSection";
 import Footer from "../components/Footer";
-
+import BackToTop from "../components/BackToTop";
 export default function Home() {
   return (
     <div>
@@ -21,7 +21,7 @@ export default function Home() {
       <CustomerReviewsSection />
       <LocationSection />
       <AppointmentSection />
-      
+      <BackToTop />
     </div>
   );
 }
