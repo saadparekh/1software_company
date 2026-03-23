@@ -2,6 +2,7 @@ import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Stats from "../components/Stats";
+import FocusSection from "../components/FocusSection";
 import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/ServicesSection";
 import ProjectsSection from "../components/ProjectsSection";
@@ -17,6 +18,7 @@ export default function Home() {
       <Stats />
       <AboutSection />
       <ServicesSection />
+      <FocusSection />
       <ProjectsSection />
       <CustomerReviewsSection />
       <LocationSection />

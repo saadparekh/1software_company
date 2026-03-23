@@ -1,258 +1,263 @@
 import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+
+// Flag icon for the contact prefix
+const FlagIcon = () => (
+  <span className="text-xl" role="img" aria-label="Pakistan Flag">
+    🇵🇰
+  </span>
+);
 
 export default function CareersPage() {
-  return (
-    <div className="bg-[#f7f7f7] min-h-screen py-20 px-6">
+  // Form state
+  const [formState, setFormState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    contactPrefix: "+92",
+    contactNumber: "",
+    jobTitle: "",
+    message: "",
+  });
 
+  const [resumeFileName, setResumeFileName] = useState("No file chosen");
+  const fileInputRef = useRef(null);
+
+  const jobTitleTextColor = formState.jobTitle ? "text-slate-950" : "text-slate-400";
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) setResumeFileName(file.name);
+    else setResumeFileName("No file chosen");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitting Form Data:", { ...formState, resume: resumeFileName });
+    alert("Form submitted (check console log).");
+  };
+
+  const stepVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({ opacity: 1, y: 0, transition: { delay: i * 0.2, duration: 0.6 } }),
+  };
+
+  return (
+    <div className="bg-[#f7f7f7] min-h-screen py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
 
         {/* PAGE TITLE */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-center mb-20"
+          className="text-4xl md:text-5xl font-bold text-center mb-20"
         >
           Careers At <span className="text-[#a41d24]">Mastek</span>
         </motion.h1>
 
         {/* HIRING PROCESS */}
         <section className="mb-24">
-
-          <h2 className="text-center text-sm tracking-widest text-[#a41d24] font-bold mb-12">
+          <h2 className="text-center text-sm md:text-base tracking-widest text-[#a41d24] font-bold mb-12">
             OUR HIRING PROCESS
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-
-            {/* CARD 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl transition"
-            >
-
-              <div className="bg-[#a41d24] text-white w-12 h-12 rounded-full flex items-center justify-center font-bold mb-6">
-                01
-              </div>
-
-              <h3 className="font-semibold text-lg mb-3">
-                Application
-              </h3>
-
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Submit your application through our website along
-                with your resume and portfolio.
-              </p>
-
-            </motion.div>
-
-            {/* CARD 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl transition"
-            >
-
-              <div className="bg-[#a41d24] text-white w-12 h-12 rounded-full flex items-center justify-center font-bold mb-6">
-                02
-              </div>
-
-              <h3 className="font-semibold text-lg mb-3">
-                Interview
-              </h3>
-
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Our recruitment team evaluates your technical
-                skills, experience and problem solving ability.
-              </p>
-
-            </motion.div>
-
-            {/* CARD 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl transition"
-            >
-
-              <div className="bg-[#a41d24] text-white w-12 h-12 rounded-full flex items-center justify-center font-bold mb-6">
-                03
-              </div>
-
-              <h3 className="font-semibold text-lg mb-3">
-                Offer Placement
-              </h3>
-
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Successful candidates receive an official offer
-                to join the Mastek team.
-              </p>
-
-            </motion.div>
-
+            {[
+              { step: "01", title: "Application", desc: "Submit your application along with your resume." },
+              { step: "02", title: "Interview", desc: "Our team reviews your profile and schedules interview." },
+              { step: "03", title: "Offer Placement", desc: "Selected candidates receive official offer." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                variants={stepVariants}
+                className="bg-white p-8 rounded-2xl shadow-md border border-gray-200 hover:shadow-2xl transition transform hover:-translate-y-2"
+              >
+                <div className="bg-[#a41d24] text-white w-12 h-12 rounded-full flex items-center justify-center font-bold mb-6">
+                  {item.step}
+                </div>
+                <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
+                <p className="text-gray-500 text-sm">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
-
         </section>
-
 
         {/* APPLY FORM */}
-
         <section>
-
-          <h2 className="text-2xl font-bold mb-10 text-[#a41d24]">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-2xl md:text-3xl font-bold mb-10 text-[#a41d24] text-center md:text-left"
+          >
             APPLY NOW
-          </h2>
+          </motion.h2>
 
-          <div className="bg-white shadow-lg rounded-xl p-10 border">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="p-10 bg-slate-50/50 rounded-3xl border border-slate-100 shadow-sm max-w-5xl mx-auto"
+          >
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 mb-12">
 
-            <form className="grid md:grid-cols-2 gap-6">
+                {/* First Name */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    First Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formState.firstName}
+                    onChange={handleInputChange}
+                    placeholder="Mike"
+                    required
+                    className="w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner"
+                  />
+                  <p className="text-xs text-slate-400 mt-2 pl-1">Enter your first name here</p>
+                </div>
 
-              {/* First Name */}
-              <div>
-                <label className="text-sm font-semibold">
-                  First Name <span className="text-red-500">*</span>
-                </label>
+                {/* Last Name */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Last Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formState.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Anderson"
+                    required
+                    className="w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner"
+                  />
+                  <p className="text-xs text-slate-400 mt-2 pl-1">Enter your last name here</p>
+                </div>
 
-                <input
-                  type="text"
-                  placeholder="Mike"
-                  className="w-full border rounded-md p-3 mt-2 focus:ring-2 focus:ring-[#a41d24]"
-                />
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formState.email}
+                    onChange={handleInputChange}
+                    placeholder="Email"
+                    required
+                    className="w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner"
+                  />
+                  <p className="text-xs text-slate-400 mt-2 pl-1">Enter your email address</p>
+                </div>
 
-                <p className="text-xs text-gray-400 mt-1">
-                  Enter your first name here
-                </p>
+                {/* Contact Number */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Contact Number <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex border border-slate-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-red-200 focus-within:border-red-400 transition-all shadow-inner">
+                    <div className="flex items-center gap-2 px-4 bg-slate-100 border-r border-slate-200 text-sm font-medium text-slate-600">
+                      <FlagIcon />
+                      <span>{formState.contactPrefix}</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="contactNumber"
+                      value={formState.contactNumber}
+                      onChange={handleInputChange}
+                      placeholder="301 2345678"
+                      pattern="[0-9]*"
+                      required
+                      className="flex-1 px-5 py-3.5 border-none focus:ring-0 text-sm transition-all"
+                    />
+                  </div>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">Example: 301 1122331</p>
+                </div>
+
+                {/* Job Title */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Job Title <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    name="jobTitle"
+                    value={formState.jobTitle}
+                    onChange={handleInputChange}
+                    required
+                    className={`w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner appearance-none ${jobTitleTextColor}`}
+                  >
+                    <option value="">-Choose an option-</option>
+                    <option value="software-developer">Software Developer</option>
+                    <option value="ui-ux-designer">UI/UX Designer</option>
+                    <option value="project-manager">Project Manager</option>
+                    <option value="qa-engineer">QA Engineer</option>
+                  </select>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">Select your job title</p>
+                </div>
+
+                {/* Resume Upload */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Upload your Resume <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative border border-slate-200 rounded-lg text-sm bg-white transition-all shadow-inner flex overflow-hidden">
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileChange}
+                      accept=".pdf"
+                      required
+                      className="sr-only"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current.click()}
+                      className="bg-slate-100 border-r border-slate-200 text-slate-800 text-sm font-semibold px-5 py-3.5 hover:bg-slate-200 transition"
+                    >
+                      Choose file
+                    </button>
+                    <span className="flex-1 text-slate-400 px-5 py-3.5 text-sm line-clamp-1">
+                      {resumeFileName}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">Please upload your CV in .pdf format.</p>
+                </div>
               </div>
 
-
-              {/* Last Name */}
-              <div>
-                <label className="text-sm font-semibold">
-                  Last Name <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="Anderson"
-                  className="w-full border rounded-md p-3 mt-2 focus:ring-2 focus:ring-[#a41d24]"
-                />
-
-                <p className="text-xs text-gray-400 mt-1">
-                  Enter your last name here
-                </p>
-              </div>
-
-
-              {/* Email */}
-              <div>
-                <label className="text-sm font-semibold">
-                  Email <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full border rounded-md p-3 mt-2 focus:ring-2 focus:ring-[#a41d24]"
-                />
-
-                <p className="text-xs text-gray-400 mt-1">
-                  Enter your email address
-                </p>
-              </div>
-
-
-              {/* Contact */}
-              <div>
-                <label className="text-sm font-semibold">
-                  Contact Number <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="text"
-                  placeholder="+92 301 2345678"
-                  className="w-full border rounded-md p-3 mt-2 focus:ring-2 focus:ring-[#a41d24]"
-                />
-
-                <p className="text-xs text-gray-400 mt-1">
-                  Example: 333 1122331
-                </p>
-              </div>
-
-
-              {/* Job Title */}
-              <div>
-                <label className="text-sm font-semibold">
-                  Job Title <span className="text-red-500">*</span>
-                </label>
-
-                <select className="w-full border rounded-md p-3 mt-2 focus:ring-2 focus:ring-[#a41d24]">
-                  <option>-Choose an option-</option>
-                  <option>Frontend Developer</option>
-                  <option>Backend Developer</option>
-                  <option>UI/UX Designer</option>
-                  <option>Data Analyst</option>
-                </select>
-
-                <p className="text-xs text-gray-400 mt-1">
-                  Select your job title from dropdown
-                </p>
-              </div>
-
-
-              {/* Resume */}
-              <div>
-                <label className="text-sm font-semibold">
-                  Upload your Resume <span className="text-red-500">*</span>
-                </label>
-
-                <input
-                  type="file"
-                  className="w-full border rounded-md p-3 mt-2"
-                />
-
-                <p className="text-xs text-gray-400 mt-1">
-                  Please upload your CV in .pdf format.
-                </p>
-              </div>
-
-
-              {/* Message */}
-              <div className="md:col-span-2">
-                <label className="text-sm font-semibold">
+              {/* Cover Letter */}
+              <div className="mb-14">
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
                   Message / Cover Letter
                 </label>
-
                 <textarea
-                  rows="5"
+                  name="message"
+                  value={formState.message}
+                  onChange={handleInputChange}
                   placeholder="Write something..."
-                  className="w-full border rounded-md p-3 mt-2 focus:ring-2 focus:ring-[#a41d24]"
-                ></textarea>
+                  className="w-full px-5 py-4 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner h-40 resize-none"
+                />
               </div>
 
-
-              {/* Submit Button */}
-              <div className="md:col-span-2">
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-black text-white px-8 py-3 rounded-full shadow-md hover:bg-[#a41d24] transition"
-                >
-                  Submit
-                </motion.button>
-
-              </div>
-
+              <button
+                type="submit"
+                className="px-10 py-3.5 bg-slate-950 text-white rounded-full font-bold text-sm hover:bg-slate-800 transition shadow-md active:scale-95"
+              >
+                Submit
+              </button>
             </form>
-
-          </div>
-
+          </motion.div>
         </section>
-
       </div>
-
     </div>
   );
 }

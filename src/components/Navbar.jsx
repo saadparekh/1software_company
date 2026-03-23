@@ -42,13 +42,13 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-6 font-medium text-gray-700 text-sm">
+        <ul className="hidden md:flex items-center gap-6 font-medium text-sm">
 
           {sections.map((sec) => (
             <li key={sec}>
               <button
                 onClick={() => handleScroll(sec)}
-                className="hover:text-[#a41d24] transition capitalize"
+                className="text-[#a41d24] hover:text-black transition capitalize"
               >
                 {sec === "life" ? "Life at Mastek" : sec}
               </button>
@@ -92,7 +92,7 @@ export default function Navbar() {
               <li key={sec}>
                 <button
                   onClick={() => handleScroll(sec)}
-                  className="hover:text-[#a41d24] transition capitalize"
+                  className="text-[#a41d24] hover:text-black transition capitalize"
                 >
                   {sec === "life" ? "Life at Mastek" : sec}
                 </button>
