@@ -23,7 +23,9 @@ export default function CareersPage() {
   const [resumeFileName, setResumeFileName] = useState("No file chosen");
   const fileInputRef = useRef(null);
 
-  const jobTitleTextColor = formState.jobTitle ? "text-slate-950" : "text-slate-400";
+  const jobTitleTextColor = formState.jobTitle
+    ? "text-slate-950"
+    : "text-slate-400";
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,49 +41,69 @@ export default function CareersPage() {
   // --- UPDATED HANDLESUBMIT ---
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Yahan hum formState ke sath resume ka naam bhi bhej rahe hain
-    const dataToSend = { ...formState, resume: resumeFileName };
+
+    // Create FormData for file upload
+    const formData = new FormData();
+    formData.append("firstName", formState.firstName);
+    formData.append("lastName", formState.lastName);
+    formData.append("email", formState.email);
+    formData.append(
+      "phone",
+      `${formState.contactPrefix} ${formState.contactNumber}`,
+    );
+    formData.append("job", formState.jobTitle);
+    formData.append("message", formState.message);
+
+    // Asli file yahan se uthayenge
+    if (fileInputRef.current.files[0]) {
+      formData.append("resume", fileInputRef.current.files[0]);
+    }
 
     try {
-      const response = await fetch('https://mastekbackend.onrender.com/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        "https://mastekbackend.onrender.com/career",
+        {
+          method: "POST",
+          // Note: FormData ke sath Content-Type header manually nahi lagate
+          body: formData,
         },
-        body: JSON.stringify(dataToSend),
-      });
+      );
 
       const data = await response.json();
 
       if (data.success) {
         alert("Application Sent Successfully!");
-        // Form reset (Optional)
         setFormState({
-            firstName: "", lastName: "", email: "",
-            contactPrefix: "+92", contactNumber: "",
-            jobTitle: "", message: ""
+          firstName: "",
+          lastName: "",
+          email: "",
+          contactPrefix: "+92",
+          contactNumber: "",
+          jobTitle: "",
+          message: "",
         });
         setResumeFileName("No file chosen");
       } else {
-        alert("Failed to send application: " + data.message);
+        alert("Failed to send application.");
       }
     } catch (err) {
-      console.error("Submission Error:", err);
-      alert("Server is not responding. Please try again later.");
+      alert("Server error. Please try again.");
     }
   };
   // ----------------------------
 
   const stepVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({ opacity: 1, y: 0, transition: { delay: i * 0.2, duration: 0.6 } }),
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.6 },
+    }),
   };
 
   return (
     <div className="bg-[#f7f7f7] min-h-screen py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-
         {/* PAGE TITLE */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -99,9 +121,21 @@ export default function CareersPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { step: "01", title: "Application", desc: "Submit your application along with your resume." },
-              { step: "02", title: "Interview", desc: "Our team reviews your profile and schedules interview." },
-              { step: "03", title: "Offer Placement", desc: "Selected candidates receive official offer." },
+              {
+                step: "01",
+                title: "Application",
+                desc: "Submit your application along with your resume.",
+              },
+              {
+                step: "02",
+                title: "Interview",
+                desc: "Our team reviews your profile and schedules interview.",
+              },
+              {
+                step: "03",
+                title: "Offer Placement",
+                desc: "Selected candidates receive official offer.",
+              },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -139,7 +173,6 @@ export default function CareersPage() {
           >
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 mb-12">
-
                 {/* First Name */}
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -154,7 +187,9 @@ export default function CareersPage() {
                     required
                     className="w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner"
                   />
-                  <p className="text-xs text-slate-400 mt-2 pl-1">Enter your first name here</p>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">
+                    Enter your first name here
+                  </p>
                 </div>
 
                 {/* Last Name */}
@@ -171,7 +206,9 @@ export default function CareersPage() {
                     required
                     className="w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner"
                   />
-                  <p className="text-xs text-slate-400 mt-2 pl-1">Enter your last name here</p>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">
+                    Enter your last name here
+                  </p>
                 </div>
 
                 {/* Email */}
@@ -188,7 +225,9 @@ export default function CareersPage() {
                     required
                     className="w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner"
                   />
-                  <p className="text-xs text-slate-400 mt-2 pl-1">Enter your email address</p>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">
+                    Enter your email address
+                  </p>
                 </div>
 
                 {/* Contact Number */}
@@ -212,7 +251,9 @@ export default function CareersPage() {
                       className="flex-1 px-5 py-3.5 border-none focus:ring-0 text-sm transition-all"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 mt-2 pl-1">Example: 301 1122331</p>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">
+                    Example: 301 1122331
+                  </p>
                 </div>
 
                 {/* Job Title */}
@@ -228,12 +269,16 @@ export default function CareersPage() {
                     className={`w-full px-5 py-3.5 border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all shadow-inner appearance-none ${jobTitleTextColor}`}
                   >
                     <option value="">-Choose an option-</option>
-                    <option value="software-developer">Software Developer</option>
+                    <option value="software-developer">
+                      Software Developer
+                    </option>
                     <option value="ui-ux-designer">UI/UX Designer</option>
                     <option value="project-manager">Project Manager</option>
                     <option value="qa-engineer">QA Engineer</option>
                   </select>
-                  <p className="text-xs text-slate-400 mt-2 pl-1">Select your job title</p>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">
+                    Select your job title
+                  </p>
                 </div>
 
                 {/* Resume Upload */}
@@ -261,7 +306,9 @@ export default function CareersPage() {
                       {resumeFileName}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-2 pl-1">Please upload your CV in .pdf format.</p>
+                  <p className="text-xs text-slate-400 mt-2 pl-1">
+                    Please upload your CV in .pdf format.
+                  </p>
                 </div>
               </div>
 
