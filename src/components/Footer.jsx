@@ -82,7 +82,7 @@ export default function Footer() {
           <h3 className="text-white text-lg font-semibold mb-4">Contact</h3>
           <div className="space-y-3 text-sm">
             <p className="flex items-center gap-3">
-              <FaPhone className="text-[#a41d24]" /> 0331-2281979
+              <FaPhone className="text-[#a41d24]" /> 0319-8548849
             </p>
 
             <p className="flex items-center gap-3 break-all">
