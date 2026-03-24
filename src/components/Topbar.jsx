@@ -7,7 +7,7 @@ export default function Topbar() {
       {/* Contact Info */}
       <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left">
         <a href="tel:+923311234567" className="hover:text-white">
-          📞 0331-1234567
+          📞 0319-8548849
         </a>
         <a href="mailto:info@mastek.tech" className="hover:text-white">
           ✉️ themastek.co@gmail.com

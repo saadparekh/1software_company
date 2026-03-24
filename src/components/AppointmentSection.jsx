@@ -49,7 +49,7 @@ export default function AppointmentSection() {
           </p>
 
           <div className="space-y-4 text-gray-300">
-            <p>📞 0331-2281979</p>
+            <p>📞 0319-8548849</p>
             <p>✉️ themastek.co@gmail.com</p>
           </div>
 
